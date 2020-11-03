@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  formatq_postgres:
+    image: "postgres:10-alpine"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d/
+    environment:
+      USER: db
+      PASSWORD: db
+      DB: db
+      SCHEMA: db_schema
+      SCHEMA_LIQUIBASE: db_schema_liquibase
+      POSTGRES_PASSWORD: postgres
+    container_name: formatq_postgres

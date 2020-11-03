@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="example-1-formatq" author="formatq">
+        <createTable tableName="example_table">
+            <column name="id" type="bigint"/>
+            <column name="some_uuid" type="uuid"/>
+            <column name="name" type="varchar(20)"/>
+            <column name="count" type="bigint"/>
+        </createTable>
+        <addNotNullConstraint tableName="example_table" columnName="id"/>
+        <addNotNullConstraint tableName="example_table" columnName="some_uuid"/>
+        <addNotNullConstraint tableName="example_table" columnName="name"/>
+        <addNotNullConstraint tableName="example_table" columnName="count"/>
+        <addAutoIncrement tableName="example_table" columnName="id" columnDataType="bigint"/>
+        <addPrimaryKey tableName="example_table" columnNames="id"/>
+        <createIndex tableName="example_table" indexName="idx_example_table_some_uuid">
+            <column name="some_uuid"/>
+        </createIndex>
+    </changeSet>
+
+
+</databaseChangeLog>
