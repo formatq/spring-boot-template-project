@@ -1,4 +1,6 @@
 spring:
-  profiles: test, local
   datasource:
     type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+  config:
+    activate:
+      on-profile: test, local

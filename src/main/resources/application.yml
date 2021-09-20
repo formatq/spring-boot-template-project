@@ -15,26 +15,32 @@ spring:
         web-allow-others: true
   liquibase:
     enabled: true
-    changeLog: "classpath:/dbschema/master.xml"
+    change-log: "classpath:/dbschema/master.xml"
     url: ${spring.datasource.url}
     liquibase-schema: ${db.db_schema}_liquibase
     default-schema: ${db.db_schema}
+    password: ${spring.datasource.password}
+    user: ${spring.datasource.username}
 logging:
   level:
-    ru.formatq.spring: DEBUG
+    org.formatq.spring: DEBUG
     liquibase: DEBUG
     org.h2: DEBUG
     org.springframework: DEBUG
 ---
 spring:
-  profiles: local
+  config:
+    activate:
+      on-profile: local
   datasource:
     url: "jdbc:postgresql://127.0.0.1:5432/db?ApplicationName=SpringApp"
     driverClassName: "org.postgresql.Driver"
     username: "db"
     password: "db"
 ---
-spring:
-  profiles: docker
 server:
   address: 0.0.0.0
+spring:
+  config:
+    activate:
+      on-profile: docker
